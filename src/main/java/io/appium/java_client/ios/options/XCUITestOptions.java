@@ -18,15 +18,19 @@ package io.appium.java_client.ios.options;
 
 import io.appium.java_client.ios.options.app.SupportsAppInstallStrategyOption;
 import io.appium.java_client.ios.options.app.SupportsAppPushTimeoutOption;
+import io.appium.java_client.ios.options.app.SupportsAppTimeZoneOption;
 import io.appium.java_client.ios.options.app.SupportsBundleIdOption;
+import io.appium.java_client.ios.options.app.SupportsInitialDeeplinkUrlOption;
 import io.appium.java_client.ios.options.app.SupportsLocalizableStringsDirOption;
 import io.appium.java_client.ios.options.general.SupportsIncludeDeviceCapsToSessionInfoOption;
 import io.appium.java_client.ios.options.general.SupportsResetLocationServiceOption;
 import io.appium.java_client.ios.options.other.SupportsCommandTimeoutsOption;
+import io.appium.java_client.ios.options.other.SupportsIosSyslogFileOption;
 import io.appium.java_client.ios.options.other.SupportsLaunchWithIdbOption;
 import io.appium.java_client.ios.options.other.SupportsResetOnSessionStartOnlyOption;
 import io.appium.java_client.ios.options.other.SupportsShowIosLogOption;
 import io.appium.java_client.ios.options.other.SupportsUseJsonSourceOption;
+import io.appium.java_client.ios.options.simulator.SupportsAutoFillPasswordsOption;
 import io.appium.java_client.ios.options.simulator.SupportsCalendarAccessAuthorizedOption;
 import io.appium.java_client.ios.options.simulator.SupportsCalendarFormatOption;
 import io.appium.java_client.ios.options.simulator.SupportsConnectHardwareKeyboardOption;
@@ -38,22 +42,30 @@ import io.appium.java_client.ios.options.simulator.SupportsKeepKeyChainsOption;
 import io.appium.java_client.ios.options.simulator.SupportsKeychainsExcludePatternsOption;
 import io.appium.java_client.ios.options.simulator.SupportsPermissionsOption;
 import io.appium.java_client.ios.options.simulator.SupportsReduceMotionOption;
+import io.appium.java_client.ios.options.simulator.SupportsReduceTransparencyOption;
+import io.appium.java_client.ios.options.simulator.SupportsSafariGlobalPreferencesOption;
 import io.appium.java_client.ios.options.simulator.SupportsScaleFactorOption;
 import io.appium.java_client.ios.options.simulator.SupportsShutdownOtherSimulatorsOption;
 import io.appium.java_client.ios.options.simulator.SupportsSimulatorDevicesSetPathOption;
+import io.appium.java_client.ios.options.simulator.SupportsSimulatorLogLevelOption;
 import io.appium.java_client.ios.options.simulator.SupportsSimulatorPasteboardAutomaticSyncOption;
 import io.appium.java_client.ios.options.simulator.SupportsSimulatorStartupTimeoutOption;
 import io.appium.java_client.ios.options.simulator.SupportsSimulatorTracePointerOption;
 import io.appium.java_client.ios.options.simulator.SupportsSimulatorWindowCenterOption;
+import io.appium.java_client.ios.options.simulator.SupportsSkipSyncUiDialogTranslationOption;
 import io.appium.java_client.ios.options.simulator.SupportsWebkitResponseTimeoutOption;
 import io.appium.java_client.ios.options.wda.SupportsAllowProvisioningDeviceRegistrationOption;
+import io.appium.java_client.ios.options.wda.SupportsAppLaunchStateTimeoutSecOption;
 import io.appium.java_client.ios.options.wda.SupportsAutoAcceptAlertsOption;
 import io.appium.java_client.ios.options.wda.SupportsAutoDismissAlertsOption;
+import io.appium.java_client.ios.options.wda.SupportsAutoLaunchOption;
 import io.appium.java_client.ios.options.wda.SupportsDerivedDataPathOption;
 import io.appium.java_client.ios.options.wda.SupportsDisableAutomaticScreenshotsOption;
 import io.appium.java_client.ios.options.wda.SupportsForceAppLaunchOption;
+import io.appium.java_client.ios.options.wda.SupportsIosInstallPauseOption;
 import io.appium.java_client.ios.options.wda.SupportsKeychainOptions;
 import io.appium.java_client.ios.options.wda.SupportsMaxTypingFrequencyOption;
+import io.appium.java_client.ios.options.wda.SupportsMjpegScreenshotUrlOption;
 import io.appium.java_client.ios.options.wda.SupportsMjpegServerPortOption;
 import io.appium.java_client.ios.options.wda.SupportsPrebuiltWdaPathOption;
 import io.appium.java_client.ios.options.wda.SupportsProcessArgumentsOption;
@@ -64,6 +76,7 @@ import io.appium.java_client.ios.options.wda.SupportsShouldUseSingletonTestManag
 import io.appium.java_client.ios.options.wda.SupportsShowXcodeLogOption;
 import io.appium.java_client.ios.options.wda.SupportsSimpleIsVisibleCheckOption;
 import io.appium.java_client.ios.options.wda.SupportsUpdatedWdaBundleIdOption;
+import io.appium.java_client.ios.options.wda.SupportsUpdatedWdaBundleIdSuffixOption;
 import io.appium.java_client.ios.options.wda.SupportsUseNativeCachingStrategyOption;
 import io.appium.java_client.ios.options.wda.SupportsUseNewWdaOption;
 import io.appium.java_client.ios.options.wda.SupportsUsePrebuiltWdaOption;
@@ -73,10 +86,12 @@ import io.appium.java_client.ios.options.wda.SupportsUseXctestrunFileOption;
 import io.appium.java_client.ios.options.wda.SupportsWaitForIdleTimeoutOption;
 import io.appium.java_client.ios.options.wda.SupportsWaitForQuiescenceOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaBaseUrlOption;
+import io.appium.java_client.ios.options.wda.SupportsWdaBindingIpOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaConnectionTimeoutOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaEventloopIdleDelayOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaLaunchTimeoutOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaLocalPortOption;
+import io.appium.java_client.ios.options.wda.SupportsWdaRemotePortOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaStartupRetriesOption;
 import io.appium.java_client.ios.options.wda.SupportsWdaStartupRetryIntervalOption;
 import io.appium.java_client.ios.options.wda.SupportsWebDriverAgentUrlOption;
@@ -85,6 +100,7 @@ import io.appium.java_client.ios.options.webview.SupportsAbsoluteWebLocationsOpt
 import io.appium.java_client.ios.options.webview.SupportsAdditionalWebviewBundleIdsOption;
 import io.appium.java_client.ios.options.webview.SupportsEnableAsyncExecuteFromHttpsOption;
 import io.appium.java_client.ios.options.webview.SupportsFullContextListOption;
+import io.appium.java_client.ios.options.webview.SupportsIgnoredWebviewBundleIdsOption;
 import io.appium.java_client.ios.options.webview.SupportsIncludeSafariInWebviewsOption;
 import io.appium.java_client.ios.options.webview.SupportsNativeWebTapOption;
 import io.appium.java_client.ios.options.webview.SupportsNativeWebTapStrictOption;
@@ -98,6 +114,10 @@ import io.appium.java_client.ios.options.webview.SupportsSafariLogAllCommunicati
 import io.appium.java_client.ios.options.webview.SupportsSafariOpenLinksInBackgroundOption;
 import io.appium.java_client.ios.options.webview.SupportsSafariSocketChunkSizeOption;
 import io.appium.java_client.ios.options.webview.SupportsSafariWebInspectorMaxFrameLengthOption;
+import io.appium.java_client.ios.options.webview.SupportsShowSafariConsoleLogOption;
+import io.appium.java_client.ios.options.webview.SupportsShowSafariNetworkLogOption;
+import io.appium.java_client.ios.options.webview.SupportsSkipTriggerInputEventAfterSendkeysOption;
+import io.appium.java_client.ios.options.webview.SupportsWebviewAtomWaitTimeoutOption;
 import io.appium.java_client.ios.options.webview.SupportsWebviewConnectRetriesOption;
 import io.appium.java_client.ios.options.webview.SupportsWebviewConnectTimeoutOption;
 import io.appium.java_client.remote.AutomationName;
@@ -114,6 +134,7 @@ import io.appium.java_client.remote.options.SupportsLanguageOption;
 import io.appium.java_client.remote.options.SupportsLocaleOption;
 import io.appium.java_client.remote.options.SupportsOrientationOption;
 import io.appium.java_client.remote.options.SupportsOtherAppsOption;
+import io.appium.java_client.remote.options.SupportsPageLoadStrategyOption;
 import io.appium.java_client.remote.options.SupportsSkipLogCaptureOption;
 import io.appium.java_client.remote.options.SupportsUdidOption;
 import org.openqa.selenium.Capabilities;
@@ -140,14 +161,17 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         // App Options: https://appium.github.io/appium-xcuitest-driver/latest/reference/capabilities/#app
         SupportsAppOption<XCUITestOptions>,
         SupportsBundleIdOption<XCUITestOptions>,
+        SupportsInitialDeeplinkUrlOption<XCUITestOptions>,
         SupportsOtherAppsOption<XCUITestOptions>,
         SupportsAppPushTimeoutOption<XCUITestOptions>,
+        SupportsAppTimeZoneOption<XCUITestOptions>,
         SupportsAppInstallStrategyOption<XCUITestOptions>,
         SupportsEnforceAppInstallOption<XCUITestOptions>,
         // WebDriverAgent options: https://appium.github.io/appium-xcuitest-driver/latest/reference/capabilities/#webdriveragent
         SupportsXcodeCertificateOptions<XCUITestOptions>,
         SupportsKeychainOptions<XCUITestOptions>,
         SupportsUpdatedWdaBundleIdOption<XCUITestOptions>,
+        SupportsUpdatedWdaBundleIdSuffixOption<XCUITestOptions>,
         SupportsDerivedDataPathOption<XCUITestOptions>,
         SupportsWebDriverAgentUrlOption<XCUITestOptions>,
         SupportsUseNewWdaOption<XCUITestOptions>,
@@ -156,8 +180,11 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsWdaStartupRetriesOption<XCUITestOptions>,
         SupportsWdaStartupRetryIntervalOption<XCUITestOptions>,
         SupportsWdaLocalPortOption<XCUITestOptions>,
+        SupportsWdaRemotePortOption<XCUITestOptions>,
+        SupportsWdaBindingIpOption<XCUITestOptions>,
         SupportsWdaBaseUrlOption<XCUITestOptions>,
         SupportsShowXcodeLogOption<XCUITestOptions>,
+        SupportsIosInstallPauseOption<XCUITestOptions>,
         SupportsUsePrebuiltWdaOption<XCUITestOptions>,
         SupportsUsePreinstalledWdaOption<XCUITestOptions>,
         SupportsPrebuiltWdaPathOption<XCUITestOptions>,
@@ -167,12 +194,14 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsUseSimpleBuildTestOption<XCUITestOptions>,
         SupportsWdaEventloopIdleDelayOption<XCUITestOptions>,
         SupportsProcessArgumentsOption<XCUITestOptions>,
+        SupportsAutoLaunchOption<XCUITestOptions>,
         SupportsAllowProvisioningDeviceRegistrationOption<XCUITestOptions>,
         SupportsResultBundlePathOption<XCUITestOptions>,
         SupportsMaxTypingFrequencyOption<XCUITestOptions>,
         SupportsSimpleIsVisibleCheckOption<XCUITestOptions>,
         SupportsWaitForQuiescenceOption<XCUITestOptions>,
         SupportsMjpegServerPortOption<XCUITestOptions>,
+        SupportsMjpegScreenshotUrlOption<XCUITestOptions>,
         SupportsScreenshotQualityOption<XCUITestOptions>,
         SupportsAutoAcceptAlertsOption<XCUITestOptions>,
         SupportsAutoDismissAlertsOption<XCUITestOptions>,
@@ -180,11 +209,13 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsShouldTerminateAppOption<XCUITestOptions>,
         SupportsForceAppLaunchOption<XCUITestOptions>,
         SupportsUseNativeCachingStrategyOption<XCUITestOptions>,
+        SupportsAppLaunchStateTimeoutSecOption<XCUITestOptions>,
         // Simulator options: https://appium.github.io/appium-xcuitest-driver/latest/reference/capabilities/#simulator
         SupportsOrientationOption<XCUITestOptions>,
         SupportsScaleFactorOption<XCUITestOptions>,
         SupportsConnectHardwareKeyboardOption<XCUITestOptions>,
         SupportsForceSimulatorSoftwareKeyboardPresenceOption<XCUITestOptions>,
+        SupportsSkipSyncUiDialogTranslationOption<XCUITestOptions>,
         SupportsCalendarAccessAuthorizedOption<XCUITestOptions>,
         SupportsCalendarFormatOption<XCUITestOptions>,
         SupportsIsHeadlessOption<XCUITestOptions>,
@@ -196,12 +227,17 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsKeepKeyChainsOption<XCUITestOptions>,
         SupportsKeychainsExcludePatternsOption<XCUITestOptions>,
         SupportsReduceMotionOption<XCUITestOptions>,
+        SupportsReduceTransparencyOption<XCUITestOptions>,
+        SupportsAutoFillPasswordsOption<XCUITestOptions>,
         SupportsPermissionsOption<XCUITestOptions>,
         SupportsIosSimulatorLogsPredicateOption<XCUITestOptions>,
+        SupportsSimulatorLogLevelOption<XCUITestOptions>,
         SupportsSimulatorPasteboardAutomaticSyncOption<XCUITestOptions>,
         SupportsSimulatorDevicesSetPathOption<XCUITestOptions>,
+        SupportsSafariGlobalPreferencesOption<XCUITestOptions>,
         SupportsCustomSslCertOption<XCUITestOptions>,
         // Web context options: https://appium.github.io/appium-xcuitest-driver/latest/reference/capabilities/#web-context
+        SupportsPageLoadStrategyOption<XCUITestOptions>,
         SupportsAutoWebViewOption<XCUITestOptions>,
         SupportsAbsoluteWebLocationsOption<XCUITestOptions>,
         SupportsSafariGarbageCollectOption<XCUITestOptions>,
@@ -211,6 +247,8 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsSafariSocketChunkSizeOption<XCUITestOptions>,
         SupportsSafariWebInspectorMaxFrameLengthOption<XCUITestOptions>,
         SupportsAdditionalWebviewBundleIdsOption<XCUITestOptions>,
+        SupportsIgnoredWebviewBundleIdsOption<XCUITestOptions>,
+        SupportsWebviewAtomWaitTimeoutOption<XCUITestOptions>,
         SupportsWebviewConnectTimeoutOption<XCUITestOptions>,
         SupportsSafariIgnoreWebHostnamesOption<XCUITestOptions>,
         SupportsNativeWebTapOption<XCUITestOptions>,
@@ -224,6 +262,9 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsEnableAsyncExecuteFromHttpsOption<XCUITestOptions>,
         SupportsFullContextListOption<XCUITestOptions>,
         SupportsEnablePerformanceLoggingOption<XCUITestOptions>,
+        SupportsSkipTriggerInputEventAfterSendkeysOption<XCUITestOptions>,
+        SupportsShowSafariConsoleLogOption<XCUITestOptions>,
+        SupportsShowSafariNetworkLogOption<XCUITestOptions>,
         // Other options: https://appium.github.io/appium-xcuitest-driver/latest/reference/capabilities/#other
         SupportsResetOnSessionStartOnlyOption<XCUITestOptions>,
         SupportsCommandTimeoutsOption<XCUITestOptions>,
@@ -231,6 +272,7 @@ public class XCUITestOptions extends BaseOptions<XCUITestOptions> implements
         SupportsSkipLogCaptureOption<XCUITestOptions>,
         SupportsLaunchWithIdbOption<XCUITestOptions>,
         SupportsShowIosLogOption<XCUITestOptions>,
+        SupportsIosSyslogFileOption<XCUITestOptions>,
         SupportsClearSystemFilesOption<XCUITestOptions> {
 
     /** Creates options with the default capabilities set. */
